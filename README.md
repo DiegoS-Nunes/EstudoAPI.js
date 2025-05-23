@@ -92,3 +92,100 @@ index.js         # Registro das rotas principais
 - O projeto utiliza SQLite para facilitar testes e desenvolvimento local.
 - As validações são feitas com express-validator.
 - O código está organizado para facilitar a manutenção e expansão futura.
+
+---
+
+# StudyAPI.js
+
+This project is a RESTful API developed in Node.js using the Express framework and Prisma ORM, with an SQLite database. Its main purpose is to serve as a study and practice environment for building modern APIs, including data validation, layered organization (controllers, models, validators, routes), and integration with a relational database.
+
+## Features
+
+The API manages four main entities:
+
+- **Users (`User`)**  
+- **Products (`Produto`)**  
+- **Tasks (`Tarefas`)**  
+- **Images (`Image`)**  
+
+Each entity has routes for CRUD operations (Create, Read, Update, Delete), with data validation and error handling.
+
+### Users
+
+- **GET /api/users**: Lists all users, including associated tasks.  
+- **POST /api/users**: Creates a new user (validates email, name, and age).  
+- **GET /api/users/:id**: Retrieves a user by ID, including their tasks.  
+- **PUT /api/users/:id**: Updates a user’s data.  
+- **DELETE /api/users/:id**: Deletes a user.  
+
+### Products
+
+- **GET /api/produtos**: Lists all products, including associated images.  
+- **POST /api/produtos**: Creates a new product (validates description and price).  
+- **GET /api/produtos/:id**: Retrieves a product by ID.  
+- **PUT /api/produtos/:id**: Updates a product’s data.  
+- **DELETE /api/produtos/:id**: Deletes a product.  
+
+### Tasks
+
+- **GET /api/tarefas**: Lists all tasks, including the associated user’s name.  
+- **POST /api/tarefas**: Creates a new task (validates description and userId).  
+- **GET /api/tarefas/:id**: Retrieves a task by ID.  
+- **PUT /api/tarefas/:id**: Updates a task’s data.  
+- **DELETE /api/tarefas/:id**: Deletes a task.  
+
+### Images
+
+- **GET /api/image**: Lists all images.  
+- **POST /api/image**: Creates a new image (validates title, URL, and produtoId).  
+- **GET /api/image/:id**: Retrieves an image by ID.  
+- **PUT /api/image/:id**: Updates an image’s data.  
+- **DELETE /api/image/:id**: Deletes an image.  
+
+## Project Structure
+```
+/src
+    /controllers   # Business logic for each entity
+    /models        # Prisma Client integration
+    /routes        # API route definitions
+    /validator     # Validations with express-validator
+/prisma
+    schema.prisma  # Data model definition
+    Dados.sqlite   # SQLite database
+server.js        # Express server initialization
+index.js         # Main route registration
+.env             # Environment variables (e.g., DATABASE_URL)
+```
+
+
+## Goals
+
+- Practice building RESTful APIs with Express and Prisma.  
+- Learn to structure Node.js projects for scalability.  
+- Implement data validation and error handling.  
+- Perform complete CRUD operations on multiple related entities.  
+
+## How to Run
+
+1. Install dependencies:  
+    ```sh
+    npm install
+    ```
+2. Run Prisma migrations (if needed):
+
+    ```sh
+    npx prisma generate
+    ```
+3. Start the server:
+
+    ```sh
+    npm start
+    ```
+
+Access the API at: http://localhost:3000/api
+
+### Notes
+
+* The project uses SQLite for easy local testing and development.
+* Validations are implemented with express-validator.
+* The code is organized to facilitate maintenance and future expansion.
